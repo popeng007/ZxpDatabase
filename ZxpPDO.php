@@ -6,7 +6,7 @@
  * PHP 5 >= 5.4
  *
  * @author      zhangxianpeng <https://github.com/popeng007>
- * @version     1.0.0 (last revision: Nov, 01, 2017)
+ * @version     1.1.0 (last revision: Nov, 27, 2017)
  * @copyright   (c) 2017 zhangxianpeng
  * @license     http://www.gnu.org/licenses/lgpl-3.0.txt
  *              GNU LESSER GENERAL PUBLIC LICENSE
@@ -181,6 +181,18 @@ class ZxpPDO
         $sql .= $this->genMore($more);
         $this->debug($sql, $vals);
 
+        return $this->query($sql, $vals);
+    }
+
+    /**
+     * 执行 sql 语句
+     *
+     * @param string $sql
+     * @param array $vals
+     * @return array
+     */
+    public function query($sql, $vals = [])
+    {
         try {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($vals);
@@ -188,7 +200,6 @@ class ZxpPDO
         } catch (PDOException $e) {
             echo 'Error : ' . $e->getMessage();
         }
-
     }
 
     /**

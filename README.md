@@ -424,6 +424,14 @@ $rs = $mysql->select('zxp', ['name', 'sex', 'age'], $where);
 // [25,29]
 ```
 
+#### 13. 自定义 SQL 语句
+```php
+<?php
+$sql = 'select `name`, `sex`, `age` from `zxp` where `id` in (?, ?, ?) group by `sex` order by age limit 0,3';
+$vals = [2, 3, 4];
+$rs = $mysql->query($sql, $vals);
+```
+
 ### 更多查询条件
 
 #### 1. order by
